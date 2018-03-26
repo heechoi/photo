@@ -17,6 +17,7 @@ public class PhotoServiceImpl implements PhotoService {
 	
 	@Override
 	public List<PhotoVO> photoList(String pid,Criteria cri) {
+		System.out.println(dao.listAllPhoto(pid, cri));
 		return dao.listAllPhoto(pid,cri);
 	}
 

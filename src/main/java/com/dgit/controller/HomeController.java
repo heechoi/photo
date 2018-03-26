@@ -63,7 +63,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/login",method = RequestMethod.POST)
-	public String login(MemberVO vo,RedirectAttributes rttr){
+	public String login(MemberVO vo,RedirectAttributes rttr,Criteria cri){
 		logger.info("----------- login  -------------");
 		MemberVO member =service.checkMember(vo.getId(), vo.getPw());
 		if(member ==null){
@@ -71,7 +71,7 @@ public class HomeController {
 			rttr.addAttribute("nomember", "회원이 아닙니다. 정보를 확인 해주세요");
 			return "redirect:/";
 		}
-	
+		rttr.addAttribute("page",cri.getPage());
 		rttr.addAttribute("member", member.getId());
 		return "redirect:photoList";
 	}
@@ -81,12 +81,11 @@ public class HomeController {
 		logger.info("----------- login  Get -------------");
 		String id = (String)requset.getSession().getAttribute("login");
 		
-	
 		
 		PageMaker pageMaker = new  PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(photoService.totalCount(id));
-		
+	
 		List<PhotoVO> vo = photoService.photoList(id,cri);
 		
 		model.addAttribute("photoList",vo);
@@ -126,6 +125,7 @@ public class HomeController {
 		logger.info("upload POST");
 		PhotoVO vo = new PhotoVO();
 		String id = (String)request.getSession().getAttribute("login");
+		
 		if(files !=null && files.get(0).getSize()>0){
 			for(int i=0;i<files.size();i++){
 				String savedName =  UploadFileUtils.uploadFile(outUploadPath, files.get(i).getOriginalFilename(), files.get(i).getBytes());

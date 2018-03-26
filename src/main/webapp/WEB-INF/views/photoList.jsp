@@ -118,13 +118,13 @@
 						<tbody>
 							<c:if test="${photoList.size()==0 }">
 								<tr>
-									<td colspan="3">사진이 없습니다.</td>
+									<td>사진이 없습니다.</td>
 								</tr>
 							</c:if>
-							<c:if test="${photoList.size()>=0 }">
+							
 								<c:forEach var="item" items="${photoList }">
 									<tr data-toggle="modal" data-target="#myModal">
-										<td colspan="3"><fmt:formatDate
+										<td><fmt:formatDate
 												value="${item.uploaddate }" pattern="yyyy-MM-dd"
 												var="uploaddate" />
 											<p class="date">${uploaddate }</p>
@@ -135,7 +135,7 @@
 										</td>
 									</tr>
 								</c:forEach>
-							</c:if>
+							
 						</tbody>
 					</table>
 				</div>
@@ -145,7 +145,7 @@
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev }">
 								<li><a
-									href="${pageContext.request.contextPath }/photoList?page=${pageMaker.startPage-1 }">&laquo;</a></li>
+									href="${pageContext.request.contextPath }/photoList?page=${pageMaker.startPage-1}">&laquo;</a></li>
 							</c:if>
 							<c:forEach begin="${pageMaker.startPage }"
 								end="${pageMaker.endPage }" var="idx">
