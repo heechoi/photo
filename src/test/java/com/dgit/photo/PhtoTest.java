@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.dgit.domain.Criteria;
 import com.dgit.domain.PhotoVO;
 import com.dgit.persistence.PhotoDAO;
 
@@ -29,12 +30,15 @@ public class PhtoTest {
 		dao.readPhoto(1);
 	}
 	
-	//@Test
+	@Test
 	public void listTest(){
-		dao.listAllPhoto("test");
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setPerPageNum(15);
+		dao.listAllPhoto("test123",cri);
 	}
 	
-	@Test
+	//@Test
 	public void deleteTest(){
 		dao.deletePhoto(1);
 	}

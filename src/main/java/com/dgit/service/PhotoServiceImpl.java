@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dgit.domain.Criteria;
 import com.dgit.domain.PhotoVO;
 import com.dgit.persistence.PhotoDAO;
 
@@ -15,8 +16,8 @@ public class PhotoServiceImpl implements PhotoService {
 	PhotoDAO dao;
 	
 	@Override
-	public List<PhotoVO> photoList(String pid) {
-		return dao.listAllPhoto(pid);
+	public List<PhotoVO> photoList(String pid,Criteria cri) {
+		return dao.listAllPhoto(pid,cri);
 	}
 
 	@Override
@@ -32,6 +33,11 @@ public class PhotoServiceImpl implements PhotoService {
 	@Override
 	public void removePhto(int pno) {
 		dao.deletePhoto(pno);
+	}
+
+	@Override
+	public int totalCount(String pid) {
+		return dao.countPagin(pid);
 	}
 
 }

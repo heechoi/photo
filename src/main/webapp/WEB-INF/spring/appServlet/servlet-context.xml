@@ -35,11 +35,18 @@
 	</beans:bean>
 	
 	<beans:bean id="Logininterceptor" class="com.dgit.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="Authinterceptor" class="com.dgit.interceptor.AuthInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
 			<mapping path="/login"/>
 			<beans:ref bean="Logininterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/upload"/>
+			<mapping path="/photoList"/>
+			<mapping path="/remove"/>
+			<beans:ref bean="Authinterceptor"/>
 		</interceptor>
 	</interceptors>
 	

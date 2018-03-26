@@ -5,7 +5,12 @@
 <mapper namespace="com.dgit.mapper.PhotoMapper">	
 	
 	<select id="listAllPhoto" resultType="PhotoVO">
-		select * from photo where pid=#{pid}
+		select * from photo where pid=#{pid} order by pno desc
+		limit #{cri.page},#{cri.perPageNum}
+	</select>
+	
+	<select id="countPagin" resultType="int">
+		select count(pno) from photo where pid=#{pid}
 	</select>
 	
 	<select id="readPhoto" resultType="PhotoVO">
