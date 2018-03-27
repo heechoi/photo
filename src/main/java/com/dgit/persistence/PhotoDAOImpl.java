@@ -21,10 +21,11 @@ public class PhotoDAOImpl implements PhotoDAO {
 	@Override
 	public List<PhotoVO> listAllPhoto(String pid,Criteria cri) {
 		HashMap<String, Object> map = new HashMap<>();
-		Criteria cri2 =new Criteria();
-		cri2.setPage((cri.getPage()-1)*cri.getPerPageNum());
+		int page = cri.getPage()-1;
+		page = (page*cri.getPerPageNum());
 		map.put("pid", pid);
-		map.put("cri", cri2);
+		map.put("page",page);
+		map.put("perPageNum", cri.getPerPageNum());
 		return session.selectList(namespace+".listAllPhoto",map);
 	}
 

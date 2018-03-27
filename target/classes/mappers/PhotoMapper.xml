@@ -6,7 +6,7 @@
 	
 	<select id="listAllPhoto" resultType="PhotoVO">
 		select * from photo where pid=#{pid} order by pno desc
-		limit #{cri.page},#{cri.perPageNum}
+		limit #{page},#{perPageNum}
 	</select>
 	
 	<select id="countPagin" resultType="int">
