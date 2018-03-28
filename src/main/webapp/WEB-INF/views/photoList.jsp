@@ -132,14 +132,16 @@
 												<img src="displayFile?filename=${item.photoName}"
 													data-img="${item.photoName }">
 											</div> <input type="hidden" value="${item.pno }" class="hiddenPno">
+											
 										</td>
 									</tr>
+							
 								</c:forEach>
 							
 						</tbody>
 					</table>
 				</div>
-
+				
 				<div class="box-footer">
 					<div class="text-center">
 						<ul class="pagination">
